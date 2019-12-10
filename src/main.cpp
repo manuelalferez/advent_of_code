@@ -19,8 +19,15 @@ int main() {
     }
 
     int sum = 0;
-    for (int i = 0; i < data.size(); ++i)
-        sum += calculate_fuel(data[i]);
+    for (int mass: data) {
+        int fuel = calculate_fuel(mass);
+        int fuel_sum = 0;
+        while (fuel > 0) {
+            fuel_sum += fuel;
+            fuel = calculate_fuel(fuel);
+        }
+        sum += fuel_sum;
+    }
 
     std::cout << sum << std::endl;
     return 0;
